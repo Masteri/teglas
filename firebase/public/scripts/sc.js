@@ -413,7 +413,7 @@ window.addEventListener('load', function() {
             });
             messageInput.value = '';
             titleInput.value = '';
-            storInput.value = '';
+            //storInput.value = '';
         }
     };
 
@@ -431,7 +431,7 @@ window.addEventListener('load', function() {
         showSection(addPost);
         messageInput.value = '';
         titleInput.value = '';
-        storInput.value = '';
+        //storInput.value = '';
     };
     recentMenuButton.onclick();
 }, false);

@@ -169,8 +169,7 @@
             var size = snapshot.metadata.size;
             console.log('Файл доступний за адресою', url);
             // [START_EXCLUDE]
-            document.getElementsByTagName('textarea').item(url);
-            document.getElementById('new-post-message').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
+            document.getElementById('new-post-message').value = url;
             document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
             // [END_EXCLUDE]
 
