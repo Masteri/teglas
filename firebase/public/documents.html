@@ -101,23 +101,21 @@
                     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
                         <form id="message-form" action="#">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <!-- <textarea class="mdl-textfield__input" rows="3" id="new-post-refstor"></textarea>
+                                <label class="mdl-textfield__label" for="new-post-refstor">Виберіть...</label>-->
+                                <h6>Виберіть файл</h6>
+                                <input type="file" id="file" name="file"/>
+                                <span id="linkbox1"></span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="new-post-title">
                                 <label class="mdl-textfield__label" for="new-post-title">Post title...</label>
                             </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <textarea class="mdl-textfield__input" rows="3" id="new-post-message"></textarea>
-                                <label class="mdl-textfield__label" for="new-post-message">Post message...</label>
+                                <label class="mdl-textfield__label" for="new-post-message" id="linkbox">Post message...</label>
                             </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input" rows="3" id="new-post-refstor"></textarea>
-                                <label class="mdl-textfield__label" for="new-post-refstor">Виберіть...</label>
-                                <h6>Виберіть файл</h6>
-                                <input type="file" id="file" name="file"/>
-                                <h6>Файл URL:</h6>
-                                <span id="linkbox"></span>
-                                <br>
-                                <span id="linkbox1"></span>
-                            </div>
+
                             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                                 Додати запис
                             </button>
@@ -171,6 +169,8 @@
             var size = snapshot.metadata.size;
             console.log('Файл доступний за адресою', url);
             // [START_EXCLUDE]
+            document.getElementsByTagName('textarea').item(url);
+            document.getElementById('new-post-message').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
             document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
             // [END_EXCLUDE]
 

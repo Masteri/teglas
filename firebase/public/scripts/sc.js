@@ -406,7 +406,7 @@ window.addEventListener('load', function() {
         e.preventDefault();
         var text = messageInput.value;
         var title = titleInput.value;
-        var stor = storInput.value;
+        //var stor = storInput.value;
         if (text && title) {
             newPostForCurrentUser(title, text).then(function() {
                 myPostsMenuButton.click();
