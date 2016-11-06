@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка файлів</title>
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Firebase Database Quickstart">
+    <meta name="theme-color" content="#303F9F">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Firebase Database Quickstart">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#303F9F">
+
+    <!-- Tile icon for Win8 -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <meta name="msapplication-navbutton-color" content="#303F9F">
+
+    <!-- Material Design Theming -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCbSJVc6mrq-rwVHPAkzpr7KMpsAu0Ndrc",
+            authDomain: "teglas-d9872.firebaseapp.com",
+            databaseURL: "https://teglas-d9872.firebaseio.com",
+            storageBucket: "teglas-d9872.appspot.com",
+            messagingSenderId: "368805166959"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+<body>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+
+    <!-- Splash screen -->
+    <section id="page-splash">
+        <h3 class="logo">База данних сайту села Тийглаш</h3>
+        <div>
+            <button id="sign-in-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign in with Google</button>
+        </div>
+    </section>
+
+    <!-- Header section containing logo and menu -->
+    <header class="header mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
+
+        <div class="mdl-layout__header-row titlebar">
+            <h3 class="logo">База данних сайту села Тийглаш</h3>
+            <button id="sign-out-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign out</button>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
+            <div class="mdl-tab">
+                <div id="menu-recent" class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons">new_releases</i> Нещодавні
+                </div>
+                <div id="menu-my-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons">home</i> My posts
+                </div>
+                <div id="menu-my-top-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
+                    <i class="material-icons">trending_up</i> My top posts
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
+                    <i class="material-icons">mode_edit</i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <main class="mdl-layout__content mdl-color--grey-100">
+
+        <!-- Show the add post form -->
+        <section class="mdl-grid content" id="add-post" style="display:none">
+            <div class="mdl-cell mdl-cell--12-col mdl-grid">
+
+                <!-- Card containing the inputs to add a new messages -->
+                <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
+                  mdl-cell--6-col-desktop">
+                    <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+                        <h2 class="mdl-card__title-text">НОВИЙ ЗАПИС</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                        <form id="message-form" action="#">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="new-post-title">
+                                <label class="mdl-textfield__label" for="new-post-title">Post title...</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" rows="3" id="new-post-message"></textarea>
+                                <label class="mdl-textfield__label" for="new-post-message">Post message...</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" rows="3" id="new-post-refstor"></textarea>
+                                <label class="mdl-textfield__label" for="new-post-refstor">Виберіть...</label>
+                            </div>
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Add post
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Show a list of recent posts -->
+        <section class="mdl-grid content" id="recent-posts-list" style="display:none">
+            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+            </div>
+        </section>
+
+        <!-- Show the list of user's posts -->
+        <section class="mdl-grid content" id="user-posts-list" style="display:none">
+            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+            </div>
+        </section>
+
+        <!-- Show the list of top user's posts -->
+        <section class="mdl-grid content" id="top-user-posts-list" style="display:none">
+            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+            </div>
+        </section>
+    </main>
+    <div class="mdl-card__supporting-text mdl-color-text--grey-600" id="messagesDiv">
+
+        <h6>Виберіть файл</h6>
+        <input type="file" id="file" name="file"/>
+        <h6>Файл URL:</h6>
+        <span id="linkbox"></span>
+        <br>
+        <span id="linkbox1"></span>
+    </div>
+</div>
+<script src="scripts/sc.js"></script>
+
+<script>
+    var auth = firebase.auth();
+    var storageRef = firebase.storage().ref();
+
+    function handleFileSelect(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        var file = evt.target.files[0];
+        var metadata = {
+            'contentType': file.type
+        };
+        // Push to child path.
+        // [START oncomplete]
+        storageRef.child( file.name).put(file, metadata).then(function(snapshot) {
+            console.log('Вигружено', snapshot.totalBytes, 'байт.');
+            console.log(snapshot.metadata);
+
+            var url = snapshot.metadata.downloadURLs[0];
+            var url1 = snapshot.metadata.name;
+            var size = snapshot.metadata.size;
+            console.log('Файл доступний за адресою', url);
+            // [START_EXCLUDE]
+            document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
+            // [END_EXCLUDE]
+
+        }).catch(function(error) {
+            // [START onfailure]
+            console.error('Помилка вигрузки:', error);
+            // [END onfailure]
+        });
+        // [END oncomplete]
+    }
+    window.onload = function() {
+        document.getElementById('file').addEventListener('change', handleFileSelect, false);
+        document.getElementById('file').disabled = true;
+
+        auth.onAuthStateChanged(function(user) {
+            if (user) {
+                console.log('user signed-in.', user);
+                document.getElementById('file').disabled = false;
+            } else {
+                console.log('There was no anonymous session. Creating a new anonymous user.');
+                // Sign the user in anonymously since accessing Storage requires the user to be authorized.
+                //auth.signInAnonymously();
+                alert("you are signIn Anonymously")
+                document.getElementById('labeltest').innerHTML = '<h1> you are signIn Anonymously </h1>'
+            }
+        });
+
+    }
+
+
+</script>
+</body>
+</html>
