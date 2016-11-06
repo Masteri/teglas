@@ -111,9 +111,15 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <textarea class="mdl-textfield__input" rows="3" id="new-post-refstor"></textarea>
                                 <label class="mdl-textfield__label" for="new-post-refstor">Виберіть...</label>
+                                <h6>Виберіть файл</h6>
+                                <input type="file" id="file" name="file"/>
+                                <h6>Файл URL:</h6>
+                                <span id="linkbox"></span>
+                                <br>
+                                <span id="linkbox1"></span>
                             </div>
                             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                Add post
+                                Додати запис
                             </button>
                         </form>
                     </div>
@@ -139,21 +145,13 @@
             </div>
         </section>
     </main>
-    <div class="mdl-card__supporting-text mdl-color-text--grey-600" id="messagesDiv">
 
-        <h6>Виберіть файл</h6>
-        <input type="file" id="file" name="file"/>
-        <h6>Файл URL:</h6>
-        <span id="linkbox"></span>
-        <br>
-        <span id="linkbox1"></span>
-    </div>
 </div>
 <script src="scripts/sc.js"></script>
 
 <script>
     var auth = firebase.auth();
-    /*var storageRef = firebase.storage().ref();
+    var storageRef = firebase.storage().ref();
 
     function handleFileSelect(evt) {
         evt.stopPropagation();
@@ -201,7 +199,7 @@
         });
 
     }
-            */
+
 
 </script>
 </body>
