@@ -18,11 +18,63 @@ var myPostsMenuButton = document.getElementById('menu-my-posts');
 var myTopPostsMenuButton = document.getElementById('menu-my-top-posts');
 var listeningFirebaseRefs = [];
 
+var storageRef = firebase.storage().ref();
+
+function handleFileSelect(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    var file = evt.target.files[0];
+    var metadata = {
+        'contentType': file.type
+    };
+    // Push to child path.
+    // [START oncomplete]
+    storageRef.child( file.name).put(file, metadata).then(function(snapshot) {
+        console.log('Вигружено', snapshot.totalBytes, 'байт.');
+        console.log(snapshot.metadata);
+
+        var url = snapshot.metadata.downloadURLs[0];
+        var url1 = snapshot.metadata.name;
+        var size = snapshot.metadata.size;
+        console.log('Файл доступний за адресою', url);
+        // [START_EXCLUDE]
+        document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
+        document.getElementsByClassName('text').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
+
+        // [END_EXCLUDE]
+
+    }).catch(function(error) {
+        // [START onfailure]
+        console.error('Помилка вигрузки:', error);
+        // [END onfailure]
+    });
+    // [END oncomplete]
+}
+window.onload = function() {
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
+    document.getElementById('file').disabled = true;
+
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            console.log('user signed-in.', user);
+            document.getElementById('file').disabled = false;
+        } else {
+            console.log('There was no anonymous session. Creating a new anonymous user.');
+            // Sign the user in anonymously since accessing Storage requires the user to be authorized.
+            //auth.signInAnonymously();
+            alert("you are signIn Anonymously")
+            document.getElementById('labeltest').innerHTML = '<h1> you are signIn Anonymously </h1>'
+        }
+    });
+
+}
+
+
 /**
  * Saves a new post to the Firebase DB.
  */
 // [START write_fan_out]
-function writeNewPost(uid, username, picture, title, body) {
+function writeNewPost(uid, username, picture, title, body, stor) {
     // A post entry.
     var postData = {
         author: username,
@@ -30,8 +82,8 @@ function writeNewPost(uid, username, picture, title, body) {
         body: body,
         title: title,
         starCount: 0,
-        authorPic: picture
-        //,stor: stor
+        authorPic: picture,
+        stor: 1
     };
 
     // Get a key for a new Post.
@@ -41,8 +93,11 @@ function writeNewPost(uid, username, picture, title, body) {
     var updates = {};
     updates['/posts/' + newPostKey] = postData;
     updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
+    alert('writeNewPost');
+    alert('postData:'+postData.stor);
+    alert('updates:'+updates);
     return firebase.database().ref().update(updates);
+
 }
 // [END write_fan_out]
 
@@ -72,7 +127,7 @@ function toggleStar(postRef, uid) {
 /**
  * Creates a post element.
  */
-function createPostElement(postId, title, text, author, authorId, authorPic) {
+function createPostElement(postId, title, text, author, authorId, authorPic, stor) {
     var uid = firebase.auth().currentUser.uid;
 
     var html =
@@ -261,7 +316,7 @@ function startDatabaseQueries() {
             var author = data.val().author || 'Anonymous';
             var containerElement = sectionElement.getElementsByClassName('posts-container')[0];
             containerElement.insertBefore(
-                createPostElement(data.key, data.val().title, data.val().body, author, data.val().uid, data.val().authorPic),
+                createPostElement(data.key, data.val().title, data.val().body, author, data.val().uid, data.val().authorPic, data.val().stor),
                 containerElement.firstChild);
         });
         postsRef.on('child_changed', function(data) {
@@ -349,7 +404,7 @@ function onAuthStateChanged(user) {
 /**
  * Creates a new post for the current user.
  */
-function newPostForCurrentUser(title, text) {
+function newPostForCurrentUser(title, text, stor) {
     // [START single_value_read]
     var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
@@ -357,7 +412,7 @@ function newPostForCurrentUser(title, text) {
         // [START_EXCLUDE]
         return writeNewPost(firebase.auth().currentUser.uid, username,
             firebase.auth().currentUser.photoURL,
-            title, text);
+            title, text, stor);
         // [END_EXCLUDE]
     });
     // [END single_value_read]
