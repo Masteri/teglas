@@ -414,6 +414,7 @@ window.addEventListener('load', function() {
             messageInput.value = '';
             titleInput.value = '';
             //storInput.value = '';
+
         }
     };
 
