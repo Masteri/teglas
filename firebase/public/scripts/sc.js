@@ -265,6 +265,7 @@ function startDatabaseQueries() {
             containerElement.insertBefore(
                 createPostElement(data.key, data.val().title, data.val().body, author, data.val().uid, data.val().authorPic, data.val().stor),
                 containerElement.firstChild);
+                //document.getElementById('nnn').innerHTML =  '<h1>'+data.val().title, data.val().body, author, data.val().uid +'</h1>';
         });
         postsRef.on('child_changed', function(data) {
             var containerElement = sectionElement.getElementsByClassName('posts-container')[0];
@@ -280,6 +281,7 @@ function startDatabaseQueries() {
             post.parentElement.removeChild(post);
         });
     };
+
 
     // Fetching and displaying all posts of each sections.
     fetchPosts(topUserPostsRef, topUserPostsSection);
@@ -436,3 +438,83 @@ window.addEventListener('load', function() {
     };
     recentMenuButton.onclick();
 }, false);
+
+var auth = firebase.auth();
+var storageRef = firebase.storage().ref();
+
+function handleFileSelect(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    var file = evt.target.files[0];
+    var metadata = {
+        'contentType': file.type
+    };
+    // Push to child path.
+    // [START oncomplete]
+    storageRef.child( file.name).put(file, metadata).then(function(snapshot) {
+        console.log('Вигружено', snapshot.totalBytes, 'байт.');
+        console.log(snapshot.metadata);
+
+        var url = snapshot.metadata.downloadURLs[0];
+        var url1 = snapshot.metadata.name;
+        var size = snapshot.metadata.size;
+        console.log('Файл доступний за адресою', url);
+        // [START_EXCLUDE]
+        document.getElementById('new-post-message').value = url;
+        //document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
+        // [END_EXCLUDE]
+
+    }).catch(function(error) {
+        // [START onfailure]
+        console.error('Помилка вигрузки:', error);
+        // [END onfailure]
+    });
+    // [END oncomplete]
+}
+window.onload = function() {
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
+    document.getElementById('file').disabled = true;
+
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            console.log('user signed-in.', user);
+            document.getElementById('file').disabled = false;
+        } else {
+            console.log('There was no anonymous session. Creating a new anonymous user.');
+            // Sign the user in anonymously since accessing Storage requires the user to be authorized.
+            //auth.signInAnonymously();
+            alert("you are signIn Anonymously")
+            document.getElementById('labeltest').innerHTML = '<h1> you are signIn Anonymously </h1>'
+        }
+    });
+
+    var mUId = firebase.auth().currentUser.uid;
+    var usersPostsRef = firebase.database().ref('user-posts/' + mUId);
+
+    usersPostsRef.on("value",
+        function(snapshot) {
+            console.log(snapshot.val())
+        },
+        function (errorObject){
+            console.log("The read failed:"+errorObject.code)
+        });
+    usersPostsRef.on("child_added",
+        function(snapshot, prevChildKey){
+
+            var newPost = snapshot.val();
+            document.getElementById('asd').innerHTML = '<h6> Author:' + newPost.author+' </h6>';
+            //document.getElementById('asd2').innerHTML = '<h6> Title:' + newPost.title+' </h6>';
+            document.getElementById('asd3').innerHTML ='<a href='+newPost.body+'>not func '+newPost.title+'</a>';
+            //console.log("Autor:"+ newPost.autor);
+            console.log("Title:"+newPost.title);
+            console.log("Prev post ID:"+ prevChildKey);
+
+            var newItem = document.createElement("A")
+            var textnode = document.createTextNode("Post: "+newPost.title + 'href='+newPost.body);
+            newItem.appendChild(textnode);
+            document.getElementById('nnn').appendChild(newItem);
+
+        }
+    );
+
+}

@@ -87,7 +87,16 @@
                         <h2>Документи:</h2>
                         <blockquote>
                             <h5 class="grey-text darken-3">Акти:</h5>
+                            <span id="nnn"></span>
                         </blockquote>
+                        <section class="mdl-grid content"  style="">
+                            <div class="posts-contai mdl-cell mdl-cell--12-col mdl-grid">
+
+                            </div>
+                        </section>
+                        <span id="asd"></span>
+                        <span id="asd2"></span>
+                        <span id="asd3"></span>
                         <p class="caption"> 1</p>
                         <p class="caption"> 2  </p>
                         <p class="caption">   3  </p>
@@ -97,61 +106,64 @@
                         </blockquote>
 
 
-                            <!-- Show the add post form
-                            <section class="mdl-grid content" id="add-post" style="display:none">-->
+                        <!-- Show the add post form
+                        <section class="mdl-grid content" id="add-post" style="display:none">-->
                         <section class="mdl-grid content" id="add-post" style="">
-                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
+                            <div class="mdl-cell mdl-cell--12-col mdl-grid">
 
-                                    <!-- Card containing the inputs to add a new messages -->
-                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-col-desktop">
-                                        <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                            <h2 class="mdl-card__title-text">НОВИЙ ЗАПИС</h2>
-                                        </div>
-                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                            <form id="message-form" action="#">
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                    <!-- <textarea class="mdl-textfield__input" rows="3" id="new-post-refstor"></textarea>
-                                                    <label class="mdl-textfield__label" for="new-post-refstor">Виберіть...</label>-->
-                                                    <h6>Виберіть файл</h6>
-                                                    <input type="file" id="file" name="file"/>
-                                                    <span id="linkbox1"></span>
-                                                </div>
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                    <input class="mdl-textfield__input" type="text" id="new-post-title">
-                                                    <label class="mdl-textfield__label" for="new-post-title">Post title...</label>
-                                                </div>
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                    <textarea class="mdl-textfield__input" rows="3" id="new-post-message"></textarea>
-                                                    <label class="mdl-textfield__label" for="new-post-message" id="linkbox">Post message...</label>
-                                                </div>
+                                <!-- Card containing the inputs to add a new messages -->
+                                <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--6-col-desktop">
+                                    <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+                                        <h2 class="mdl-card__title-text">НОВИЙ ЗАПИС</h2>
+                                    </div>
+                                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                                        <form id="message-form" action="#">
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <!-- <textarea class="mdl-textfield__input" rows="3" id="new-post-refstor"></textarea>
+                                                <label class="mdl-textfield__label" for="new-post-refstor">Виберіть...</label>-->
+                                                <h6>Виберіть файл</h6>
+                                                <input type="file" id="file" name="file"/>
+                                                <span id="linkbox1"></span>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <input class="mdl-textfield__input" type="text" id="new-post-title">
+                                                <label class="mdl-textfield__label" for="new-post-title">Post title...</label>
+                                            </div>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                <textarea class="mdl-textfield__input" rows="3" id="new-post-message"></textarea>
+                                                <label class="mdl-textfield__label" for="new-post-message" id="linkbox">Post message...</label>
+                                            </div>
 
-                                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                    Додати запис
-                                                </button>
-                                            </form>
-                                        </div>
+                                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                                Додати запис
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-                            </section>
+                            </div>
+                        </section>
 
-                            <!-- Show a list of recent posts
-                            <section class="mdl-grid content" id="recent-posts-list" style="display:none">-->
-                            <section class="mdl-grid content" id="recent-posts-list" style="">
-                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                </div>
-                            </section>
+                        <!-- Show a list of recent posts
+                        <section class="mdl-grid content" id="recent-posts-list" style="display:none">-->
+                        <section class="mdl-grid content" id="recent-posts-list" style="">
+                            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                <h5>posts-container:1</h5>
+                            </div>
+                        </section>
 
-                            <!-- Show the list of user's posts -->
-                            <section class="mdl-grid content" id="user-posts-list" style="">
-                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                </div>
-                            </section>
+                        <!-- Show the list of user's posts -->
+                        <section class="mdl-grid content" id="user-posts-list" style="">
+                            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                <h5>posts-container:2</h5>
+                            </div>
+                        </section>
 
-                            <!-- Show the list of top user's posts -->
-                            <section class="mdl-grid content" id="top-user-posts-list" style="">
-                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                </div>
-                            </section>
+                        <!-- Show the list of top user's posts -->
+                        <section class="mdl-grid content" id="top-user-posts-list" style="">
+                            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                <h5>posts-container:3</h5>
+                            </div>
+                        </section>
 
 
 
@@ -194,7 +206,6 @@
                         </div>
                         <script src="https://www.gismeteo.ua/ajax/getInformer/?hash=2sjqF0WOdjI0ot" type="text/javascript"></script>
                         <!-- Gismeteo informer END
-
                         <ul class="section table-of-contents">
                           <li><a href="#materialdesign" class="active">Погода</a></li>
                           <li><a href="#team">Цікаві посилання</a></li>
@@ -278,7 +289,6 @@
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
     ga('create', 'UA-56218128-1', 'auto');
     ga('require', 'displayfeatures');
     ga('send', 'pageview');
@@ -286,60 +296,7 @@
 
 <script src="scripts/sc.js"></script>
 
-<script>
-    var auth = firebase.auth();
-    var storageRef = firebase.storage().ref();
 
-    function handleFileSelect(evt) {
-        evt.stopPropagation();
-        evt.preventDefault();
-        var file = evt.target.files[0];
-        var metadata = {
-            'contentType': file.type
-        };
-        // Push to child path.
-        // [START oncomplete]
-        storageRef.child( file.name).put(file, metadata).then(function(snapshot) {
-            console.log('Вигружено', snapshot.totalBytes, 'байт.');
-            console.log(snapshot.metadata);
-
-            var url = snapshot.metadata.downloadURLs[0];
-            var url1 = snapshot.metadata.name;
-            var size = snapshot.metadata.size;
-            console.log('Файл доступний за адресою', url);
-            // [START_EXCLUDE]
-            document.getElementById('new-post-message').value = url;
-            document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
-            // [END_EXCLUDE]
-
-        }).catch(function(error) {
-            // [START onfailure]
-            console.error('Помилка вигрузки:', error);
-            // [END onfailure]
-        });
-        // [END oncomplete]
-    }
-    window.onload = function() {
-        document.getElementById('file').addEventListener('change', handleFileSelect, false);
-        document.getElementById('file').disabled = true;
-
-        auth.onAuthStateChanged(function(user) {
-            if (user) {
-                console.log('user signed-in.', user);
-                document.getElementById('file').disabled = false;
-            } else {
-                console.log('There was no anonymous session. Creating a new anonymous user.');
-                // Sign the user in anonymously since accessing Storage requires the user to be authorized.
-                //auth.signInAnonymously();
-                alert("you are signIn Anonymously")
-                document.getElementById('labeltest').innerHTML = '<h1> you are signIn Anonymously </h1>'
-            }
-        });
-
-    }
-
-
-</script>
 
 </body>
 </html>
