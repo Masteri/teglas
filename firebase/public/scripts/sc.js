@@ -502,18 +502,23 @@ window.onload = function() {
         function(snapshot, prevChildKey){
 
             var newPost = snapshot.val();
+            /*
             document.getElementById('asd').innerHTML = '<h6> Author:' + newPost.author+' </h6>';
             //document.getElementById('asd2').innerHTML = '<h6> Title:' + newPost.title+' </h6>';
             document.getElementById('asd3').innerHTML ='<a href='+newPost.body+'>not func '+newPost.title+'</a>';
             //console.log("Autor:"+ newPost.autor);
             console.log("Title:"+newPost.title);
             console.log("Prev post ID:"+ prevChildKey);
+            */
 
             var newItem = document.createElement("A");
+            var nbr = document.createElement("BR");
             newItem.setAttribute("href",newPost.body);
-            var textnode = document.createTextNode("Post: "+newPost.title);
+            //newItem.setAttribute("class", "caption");
+            var textnode = document.createTextNode("Скачати: "+newPost.title);
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
+            document.getElementById('nnn').appendChild(nbr);
 
         }
     );
