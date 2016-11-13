@@ -482,15 +482,16 @@ window.onload = function() {
         } else {
             console.log('There was no anonymous session. Creating a new anonymous user.');
             // Sign the user in anonymously since accessing Storage requires the user to be authorized.
-            //auth.signInAnonymously();
-            alert("you are signIn Anonymously")
-            document.getElementById('labeltest').innerHTML = '<h1> you are signIn Anonymously </h1>'
+            auth.signInAnonymously();
+            //alert("Ви зайли й як невідомий користувач")
+            document.getElementById('asd').innerHTML = '<h1>Ви зайли й як невідомий користувач</h1>'+ user;
         }
     });
 
     var mUId = firebase.auth().currentUser.uid;
-    var usersPostsRef = firebase.database().ref('user-posts/' + mUId);
-
+    //var usersPostsRef = firebase.database().ref('user-posts/' + mUId);
+    var usersPostsRef = firebase.database().ref('user-posts/rqGjDIawe2SI6KMARsw3uS8RuzK2');
+    alert(mUId);//'rqGjDIawe2SI6KMARsw3uS8RuzK2'
     usersPostsRef.on("value",
         function(snapshot) {
             console.log(snapshot.val())
