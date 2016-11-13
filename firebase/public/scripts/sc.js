@@ -509,8 +509,9 @@ window.onload = function() {
             console.log("Title:"+newPost.title);
             console.log("Prev post ID:"+ prevChildKey);
 
-            var newItem = document.createElement("A")
-            var textnode = document.createTextNode("Post: "+newPost.title + 'href='+newPost.body);
+            var newItem = document.createElement("A");
+            newItem.setAttribute("href",newPost.body);
+            var textnode = document.createTextNode("Post: "+newPost.title);
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
 
