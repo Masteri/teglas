@@ -36,13 +36,13 @@ function showlist() {
 ///write data
 
 function writeUserData(userId, name, email, imageUrl) {
-    firebase.database().ref('users/' ).set({
+    firebase.database().ref('koristuvach/asdasd' ).set({
         userId: 'rqGjDIawe2SI6KMARsw3uS8RuzK2',
         username: 'Janos',
         email: 'man@gmail.com',
         profile_picture : ''
     });
-    alert(name+email+imageUrl);
+    //alert(name+email+imageUrl);
 }
 
 function oldgetdata() {
