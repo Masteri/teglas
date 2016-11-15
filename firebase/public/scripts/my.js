@@ -1,3 +1,10 @@
+
+(function() {
+    'use strict';
+    alert('I\'m running self' );
+    showlist();
+})();
+
 var database = firebase.database();
 var auth = firebase.auth();
 
