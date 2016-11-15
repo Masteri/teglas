@@ -48,3 +48,6 @@ Temporary Items
 .idea
 .idea/workspace.xml
 .idea/*.*
+*.xml
+firebase/firebase-debug.log
+*.xml
