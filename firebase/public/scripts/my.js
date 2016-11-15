@@ -16,16 +16,6 @@ function showlist() {
     newdItem.appendChild(textdnode);
     document.getElementById('datenow').appendChild(newdItem);
 
-    var provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider).then(function(result) {
-        var accessToken = result.credential.accessToken;
-        var newItem = document.createElement("A");
-        var textnode = document.createTextNode("     accessToken: "+accessToken);
-        newItem.appendChild(textnode);
-        document.getElementById('datenow').appendChild(newItem);
-
-    });
-
     auth.onAuthStateChanged(function(user) {
         if (user) {
             // User signed in!
@@ -54,25 +44,12 @@ function writeUserData(userId, name, email, imageUrl) {
     });
     alert(name+email+imageUrl);
 }
-function oldgetdata() {
-    auth.onAuthStateChanged(function(user) {
-        if (user) {
-            console.log('user signed-in.', user);
-            alert("Ви зайли й як користувач:"+ user)
-            //document.getElementById('file').disabled = false;
-        } else {
-            console.log('There was no anonymous session. Creating a new anonymous user.');
-            // Sign the user in anonymously since accessing Storage requires the user to be authorized.
-            auth.signInAnonymously();
-            alert("Ви зайли й як невідомий користувач");
-            document.getElementById('asd2').innerHTML = '<h1>Ви зайли й як невідомий користувач</h1>'+ user;
-        }
-    });
 
+function oldgetdata() {
     var mUId = firebase.auth().currentUser.uid;
-    var usersPostsRef = firebase.database().ref();
-    //var usersPostsRef = firebase.database().ref('user-posts/rqGjDIawe2SI6KMARsw3uS8RuzK2');
-//
+    var usersPostsRef = firebase.database().ref().child('posts');
+    auth.signInAnonymously();
+    document.getElementById('asd2').innerHTML = '<h5>Ви зайли й як невідомий користувач</h5>'+mUId;
     usersPostsRef.on("value",
         function(snapshot) {
             console.log(snapshot.val());
@@ -81,15 +58,15 @@ function oldgetdata() {
             console.log("The read failed:"+errorObject.code)
         });
     usersPostsRef.on("child_added",
-        function(snapshot ){//, prevChildKey){
+        function(snapshot ){
+            //, prevChildKey){
             var newPost = snapshot.val();
             var newItem = document.createElement("A");
-            var nbr = document.createElement("BR");
-            newItem.setAttribute("href",newPost.body);
+            newItem.setAttribute("href", newPost.body);
             var textnode = document.createTextNode("Скачати: "+newPost.title);
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
-            document.getElementById('nnn').appendChild(nbr);
+
         }
     );
 
