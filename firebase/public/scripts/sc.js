@@ -22,8 +22,9 @@ var listeningFirebaseRefs = [];
  * Saves a new post to the Firebase DB.
  */
 // [START write_fan_out]
-function writeNewPost(uid, username, picture, title, body, stor) {
+function writeNewPost(uid, username, picture, title, body, stor, datenow) {
     // A post entry.
+    var datenow = new Date().toJSON().slice(0,10);
     var postData = {
         author: username,
         uid: uid,
@@ -31,7 +32,8 @@ function writeNewPost(uid, username, picture, title, body, stor) {
         title: title,
         starCount: 0,
         authorPic: picture,
-        stor: 1
+        stor: 1,
+        datetime: datenow
     };
     // Get a key for a new Post.
     var newPostKey = firebase.database().ref().child('posts').push().key;
@@ -40,9 +42,7 @@ function writeNewPost(uid, username, picture, title, body, stor) {
     var updates = {};
     updates['/posts/' + newPostKey] = postData;
     updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-    alert('writeNewPost');
-    alert('postData:'+postData.stor);
-    alert('updates:'+updates);
+
     return firebase.database().ref().update(updates);
 
 }
@@ -79,7 +79,7 @@ function createPostElement(postId, title, text, author, authorId, authorPic, sto
 
     var html =
         '<div class="post post-' + postId + ' mdl-cell mdl-cell--12-col ' +
-        'mdl-cell--6-col-tablet mdl-cell--4-col-desktop mdl-grid mdl-grid--no-spacing">' +
+        //'mdl-cell--6-col-tablet mdl-cell--4-col-desktop mdl-grid mdl-grid--no-spacing">' +
         '<div class="mdl-card mdl-shadow--2dp">' +
         '<div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">' +
         '<h4 class="mdl-card__title-text"></h4>' +
@@ -171,15 +171,15 @@ function createPostElement(postId, title, text, author, authorId, authorPic, sto
     };
 
     // Bind starring action.
-    var onStarClicked = function() {
+    /*var onStarClicked = function() {
         var globalPostRef = firebase.database().ref('/posts/' + postId);
         var userPostRef = firebase.database().ref('/user-posts/' + authorId + '/' + postId);
         toggleStar(globalPostRef, uid);
         toggleStar(userPostRef, uid);
     };
-    unStar.onclick = onStarClicked;
-    star.onclick = onStarClicked;
-
+    //unStar.onclick = onStarClicked;
+    //star.onclick = onStarClicked;
+*/
     return postElement;
 }
 
@@ -353,7 +353,7 @@ function onAuthStateChanged(user) {
 /**
  * Creates a new post for the current user.
  */
-function newPostForCurrentUser(title, text, stor) {
+function newPostForCurrentUser(title, text, stor, datenow) {
     // [START single_value_read]
     var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
@@ -361,7 +361,7 @@ function newPostForCurrentUser(title, text, stor) {
         // [START_EXCLUDE]
         return writeNewPost(firebase.auth().currentUser.uid, username,
             firebase.auth().currentUser.photoURL,
-            title, text, stor);
+            title, text, stor, datenow);
         // [END_EXCLUDE]
     });
     // [END single_value_read]
