@@ -474,6 +474,8 @@ function handleFileSelect(evt) {
 window.onload = function() {
     document.getElementById('file').addEventListener('change', handleFileSelect, false);
     document.getElementById('file').disabled = true;
+    var auth = firebase.auth();
+    auth.signInAnonymously();
 
     auth.onAuthStateChanged(function(user) {
         if (user) {
@@ -491,7 +493,7 @@ window.onload = function() {
     var mUId = firebase.auth().currentUser.uid;
     //var usersPostsRef = firebase.database().ref('user-posts/' + mUId);
     var usersPostsRef = firebase.database().ref('user-posts/rqGjDIawe2SI6KMARsw3uS8RuzK2');
-    alert(mUId);//'rqGjDIawe2SI6KMARsw3uS8RuzK2'
+    //alert(mUId);//'rqGjDIawe2SI6KMARsw3uS8RuzK2'
     usersPostsRef.on("value",
         function(snapshot) {
             console.log(snapshot.val())

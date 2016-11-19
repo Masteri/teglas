@@ -7,39 +7,29 @@
 
 var database = firebase.database();
 var auth = firebase.auth();
+auth.signInAnonymously();
+
 
 function showlist() {
-   // var mUId = firebase.auth().currentUser.uid;
-    //var usersPostsRef = firebase.database().ref('user-posts/' + mUId);
-
-    var d = new Date();
-    var d1 = d.getDate();
-    //var d2 = d.now();
-    var d3 =d.toDateString();
-    console.log(d3);
+    var datatim =new Date().toDateString();
+    console.log(datatim);
     var newdItem = document.createElement("A");
-    var textdnode = document.createTextNode("d: " + d + '!!!, database'+ database
-        + ', d1   ' +d1+ ', d3   '+ d3);
+    var textdnode = document.createTextNode('data: '+ datatim);
     newdItem.appendChild(textdnode);
     document.getElementById('datenow').appendChild(newdItem);
 
+    /*
     auth.onAuthStateChanged(function(user) {
         if (user) {
-            // User signed in!
             var uid = user.uid;
-            console.log(uid);
-            document.getElementById('userids').innerText= uid;
+            document.getElementById('userids').innerText = uid;
         } else {
-            // User logged
-            var uid1 = 'not auth';
             auth.signInAnonymously();
-            alert(user);
-            alert(user.name);
-            //document.getElementById('userids').appendChild(uid1);
         }
     });
-/////end showlist()
+    */
 }
+/////end showlist()
 ///write data
 
 function writeUserData(userId, name, email, imageUrl) {
@@ -51,6 +41,8 @@ function writeUserData(userId, name, email, imageUrl) {
     });
     //alert(name+email+imageUrl);
 }
+
+
 
 function oldgetdata() {
     var mUId = firebase.auth().currentUser.uid;
