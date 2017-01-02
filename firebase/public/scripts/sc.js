@@ -100,7 +100,7 @@ function createPostElement(postId, title, text, author, authorId, authorPic, sto
         '<form class="add-comment" action="#">' +
         '<div class="mdl-textfield mdl-js-textfield">' +
         '<input class="mdl-textfield__input new-comment" type="text">' +
-        '<label class="mdl-textfield__label">Comment...</label>' +
+        '<label class="mdl-textfield__label">...</label>' +
         '</div>' +
         '</form>' +
         '</div>' +

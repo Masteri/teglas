@@ -71,10 +71,10 @@
                     <i class="material-icons">new_releases</i> Нещодавні
                 </div>
                 <div id="menu-my-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">home</i> My posts
+                    <i class="material-icons">home</i> Публікації
                 </div>
                 <div id="menu-my-top-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                    <i class="material-icons">trending_up</i> My top posts
+                    <i class="material-icons">trending_up</i> П
                 </div>
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
                     <i class="material-icons">mode_edit</i>
@@ -100,25 +100,24 @@
                     </div>
                     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
                         <form id="message-form" action="#">
+
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <!-- <textarea class="mdl-textfield__input" rows="3" id="new-post-refstor"></textarea>
-                                <label class="mdl-textfield__label" for="new-post-refstor">Виберіть...</label>-->
+                                <input class="mdl-textfield__input" type="text" id="new-post-title">
+                                <label class="mdl-textfield__label" for="new-post-title">Назва...</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <h6>Виберіть файл</h6>
                                 <input type="file" id="file" name="file"/>
                                 <span id="linkbox1"></span>
                             </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="new-post-title">
-                                <label class="mdl-textfield__label" for="new-post-title">Post title...</label>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input" rows="3" id="new-post-message"></textarea>
-                                <label class="mdl-textfield__label" for="new-post-message" id="linkbox">Post message...</label>
-                            </div>
-
                             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                                 Додати запис
                             </button>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea readonly class="mdl-textfield__input" rows="3" id="new-post-message"></textarea>
+                                <label class="mdl-textfield__label" for="new-post-message" id="linkbox">Не змінювати, бо це посилання...</label>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -170,7 +169,7 @@
             console.log('Файл доступний за адресою', url);
             // [START_EXCLUDE]
             document.getElementById('new-post-message').value = url;
-            document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
+            //document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click '+  url1 + '  kilobit:' + size +'</a> ';
             // [END_EXCLUDE]
 
         }).catch(function(error) {
