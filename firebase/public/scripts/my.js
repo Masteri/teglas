@@ -46,7 +46,7 @@ function oldgetdata() {
             console.log(snapshot.val());
         },
         function (errorObject){
-            console.log("The read failed:"+errorObject.code)
+            console.log("The read failed:"+errorObject.code);
         });
     usersPostsRef.on("child_added",
         function(snapshot ){
@@ -56,13 +56,17 @@ function oldgetdata() {
             var nbr = document.createElement("BR");
             var li = document.createElement("li");
             li.innerText = newPost.title;
-            li.id = snapshot.key;
+            newItem.id = snapshot.key;//li.id = snapshot.key;
             newItem.setAttribute("href", newPost.body);
-            var textnode = document.createTextNode(newPost.datetime+" - "+newPost.title+"     Key is:"+ snapshot.key);
+            var textnode = document.createTextNode(newPost.datetime+" - "+newPost.title);
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
             document.getElementById('nnn').appendChild(nbr);
             document.getElementById('ullist').appendChild(li);
+        }
+        ,
+        function (errorObject){
+            alert("The read failed:"+errorObject.code);
         }
     );
 }

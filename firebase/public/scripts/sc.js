@@ -471,11 +471,12 @@ function handleFileSelect(evt) {
     });
     // [END oncomplete]
 }
+/*
 window.onload = function() {
     document.getElementById('file').addEventListener('change', handleFileSelect, false);
     document.getElementById('file').disabled = true;
     var auth = firebase.auth();
-    auth.signInAnonymously();
+    //auth.signInAnonymously();
 
     auth.onAuthStateChanged(function(user) {
         if (user) {
@@ -505,14 +506,7 @@ window.onload = function() {
         function(snapshot, prevChildKey){
 
             var newPost = snapshot.val();
-            /*
-            document.getElementById('asd').innerHTML = '<h6> Author:' + newPost.author+' </h6>';
-            //document.getElementById('asd2').innerHTML = '<h6> Title:' + newPost.title+' </h6>';
-            document.getElementById('asd3').innerHTML ='<a href='+newPost.body+'>not func '+newPost.title+'</a>';
-            //console.log("Autor:"+ newPost.autor);
-            console.log("Title:"+newPost.title);
-            console.log("Prev post ID:"+ prevChildKey);
-            */
+
 
             var newItem = document.createElement("A");
             var nbr = document.createElement("BR");
@@ -527,3 +521,4 @@ window.onload = function() {
     );
 
 }
+*/
