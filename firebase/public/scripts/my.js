@@ -55,7 +55,7 @@ function oldgetdata() {
             var newItem = document.createElement("A");
             var nbr = document.createElement("BR");
             newItem.setAttribute("href", newPost.body);
-            var textnode = document.createTextNode(" - "+newPost.title);
+            var textnode = document.createTextNode(newPost.datetime+" - "+newPost.title+"     Key is:"+ snapshot.key);
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
             document.getElementById('nnn').appendChild(nbr);
