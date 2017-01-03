@@ -1,8 +1,9 @@
 
 (function() {
     'use strict';
-    alert('I\'m running self' );
+    //alert('I\'m running self' );
     showlist();
+    oldgetdata();
 })();
 
 var database = firebase.database();
@@ -18,19 +19,7 @@ function showlist() {
     newdItem.appendChild(textdnode);
     document.getElementById('datenow').appendChild(newdItem);
 
-    /*
-    auth.onAuthStateChanged(function(user) {
-        if (user) {
-            var uid = user.uid;
-            document.getElementById('userids').innerText = uid;
-        } else {
-            auth.signInAnonymously();
-        }
-    });
-    */
-}
-/////end showlist()
-///write data
+
 
 function writeUserData(userId, name, email, imageUrl) {
     firebase.database().ref('koristuvach/asdasd' ).set({
@@ -45,10 +34,12 @@ function writeUserData(userId, name, email, imageUrl) {
 
 
 function oldgetdata() {
-    var mUId = firebase.auth().currentUser.uid;
+    var database = firebase.database();
+    var auth = firebase.auth();
     var usersPostsRef = firebase.database().ref().child('posts');
     auth.signInAnonymously();
-    document.getElementById('asd2').innerHTML = '<h5>Ви зайли й як невідомий користувач</h5>'+mUId;
+    //var mUId = firebase.auth().currentUser.uid;
+    //document.getElementById('asd2').innerHTML = '<h5>Ви зайли й як невідомий користувач</h5>'+mUId;
     usersPostsRef.on("value",
         function(snapshot) {
             console.log(snapshot.val());
