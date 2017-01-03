@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     //alert('I\'m running self' );
-    showlist();
+    //showlist();
     oldgetdata();
 })();
 
@@ -12,12 +12,13 @@ auth.signInAnonymously();
 
 
 function showlist() {
-    var datatim =new Date().toDateString();
+    var datatim = new Date().toDateString();
     console.log(datatim);
     var newdItem = document.createElement("A");
-    var textdnode = document.createTextNode('data: '+ datatim);
+    var textdnode = document.createTextNode('data: ' + datatim);
     newdItem.appendChild(textdnode);
     document.getElementById('datenow').appendChild(newdItem);
+}
 
 
 
@@ -52,12 +53,12 @@ function oldgetdata() {
             //, prevChildKey){
             var newPost = snapshot.val();
             var newItem = document.createElement("A");
+            var nbr = document.createElement("BR");
             newItem.setAttribute("href", newPost.body);
-            var textnode = document.createTextNode("Скачати: "+newPost.title);
+            var textnode = document.createTextNode(" - "+newPost.title);
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
-
+            document.getElementById('nnn').appendChild(nbr);
         }
     );
-
 }

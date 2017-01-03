@@ -490,7 +490,7 @@ window.onload = function() {
         }
     });
 
-    var mUId = firebase.auth().currentUser.uid;
+    //var mUId = firebase.auth().currentUser.uid;
     //var usersPostsRef = firebase.database().ref('user-posts/' + mUId);
     var usersPostsRef = firebase.database().ref('user-posts/rqGjDIawe2SI6KMARsw3uS8RuzK2');
     //alert(mUId);//'rqGjDIawe2SI6KMARsw3uS8RuzK2'
