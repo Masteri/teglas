@@ -516,7 +516,7 @@ window.onload = function() {
             var nbr = document.createElement("BR");
             newItem.setAttribute("href",newPost.body);
             //newItem.setAttribute("class", "caption");
-            var textnode = document.createTextNode("Скачати: "+newPost.title);
+            var textnode = document.createTextNode(" - "+newPost.title);
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
             document.getElementById('nnn').appendChild(nbr);

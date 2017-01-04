@@ -1,80 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.0.2.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  <script type="text/javascript" src="http://static.firebase.com/v0/firebase.js"></script>
+  <style type="text/css">
+    div {
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color: #fafafa;
+    border: 1px solid #999;
+    font-family:'Courier New', 'Courier', monospaced;
+    margin-bottom: 10px;
+    }
+    h3 {
+    clear: both;
+    padding-top: 20px;
+    }
+    button {
+    font-size: 36px;
+    }
 
-(function() {
-    'use strict';
-    //alert('I\'m running self' );
-    //showlist();
-    oldgetdata();
-})();
+  </style>
 
-var database = firebase.database();
-var auth = firebase.auth();
-auth.signInAnonymously();
-
-
-function showlist() {
-    var datatim = new Date().toDateString();
-    console.log(datatim);
-    var newdItem = document.createElement("A");
-    var textdnode = document.createTextNode('data: ' + datatim);
-    newdItem.appendChild(textdnode);
-    document.getElementById('datenow').appendChild(newdItem);
-}
-
-
-
-function writeUserData(userId, name, email, imageUrl) {
-    firebase.database().ref('koristuvach/asdasd' ).set({
-        userId: 'rqGjDIawe2SI6KMARsw3uS8RuzK2',
-        username: 'Janos',
-        email: 'man@gmail.com',
-        profile_picture : ''
-    });
-    //alert(name+email+imageUrl);
-}
+  <title>A Simple Paginator</title>
 
 
-
-function oldgetdata() {
-    var database = firebase.database();
-    var auth = firebase.auth();
-    var usersPostsRef = firebase.database().ref().child('posts');
-    auth.signInAnonymously();
-    //var mUId = firebase.auth().currentUser.uid;
-    //document.getElementById('asd2').innerHTML = '<h5>Ви зайли й як невідомий користувач</h5>'+mUId;
-    usersPostsRef.on("value",
-        function(snapshot) {
-            console.log(snapshot.val());
-        },
-        function (errorObject){
-            console.log("The read failed:"+errorObject.code);
-        });
-    usersPostsRef.on("child_added",
-        function(snapshot ){
-            //, prevChildKey){
-            var newPost = snapshot.val();
-            var newItem = document.createElement("A");
-            var nbr = document.createElement("BR");
-            var li = document.createElement("li");
-            li.innerText = newPost.title;
-            newItem.id = snapshot.key;//li.id = snapshot.key;
-            newItem.setAttribute("href", newPost.body);
-            var textnode = document.createTextNode(newPost.datetime+" - "+newPost.title);
-            newItem.appendChild(textnode);
-            document.getElementById('nnn').appendChild(newItem);
-            document.getElementById('nnn').appendChild(nbr);
-            document.getElementById('ullist').appendChild(li);
-        }
-        ,
-        function (errorObject){
-            alert("The read failed:"+errorObject.code);
-        }
-    );
-}
-
-
+<script type="text/javascript">//<![CDATA[
+$(window).load(function(){
 /***************************
- A SIMPLE PAGINATOR
- *************************/
+  A SIMPLE PAGINATOR
+  *************************/
 function Paginator(ref, limit) {
     this.ref = ref;
     this.pageNumber = 0;
@@ -86,7 +46,7 @@ function Paginator(ref, limit) {
 Paginator.prototype = {
     nextPage: function (callback) {
         if( this.isLastPage() ) {
-            callback(this.currentSet);
+            callback(this.currentSet);    
         }
         else {
             var lastKey = getLastKey(this.currentSet);
@@ -105,7 +65,7 @@ Paginator.prototype = {
     prevPage: function (callback) {
         console.log('prevPage', this.isFirstPage(), this.pageNumber);
         if( this.isFirstPage() ) {
-            callback(this.currentSet);
+            callback(this.currentSet);    
         }
         else {
             var firstKey = getFirstKey(this.currentSet);
@@ -134,7 +94,7 @@ Paginator.prototype = {
         if( len < this.limit ) {
             // if the next page returned some results, it becomes the last page
             // otherwise this one is
-            this.lastPageNumber = this.pageNumber + (len > 0? 1 : 0);
+            this.lastPageNumber = this.pageNumber + (len > 0? 1 : 0);   
         }
         if (len === 0) {
             // we don't know if this is the last page until
@@ -162,9 +122,9 @@ Paginator.prototype = {
 };
 
 /***************************
- APPLICATION LOGIC
- *************************/
-var fb = new Firebase('https://examples-sql-queries.firebaseio.com/widget');
+  APPLICATION LOGIC
+  *************************/
+var fb = new Firebase('https://teglas-d9872.firebaseio.com/posts');
 var paginator = new Paginator(fb, 5);
 moveForward();
 
@@ -173,8 +133,8 @@ $('#next').click(moveForward);
 
 
 /***************************
- DEMO UTILS (fluff)
- *************************/
+  DEMO UTILS (fluff)
+  *************************/
 
 function moveForward() {
     loading();
@@ -263,3 +223,37 @@ function size(obj) {
     });
     return i;
 }
+});//]]> 
+
+</script>
+
+  
+<style type="text/css">/* This is not a zero-length file! */</style><style type="text/css">/* This is not a zero-length file! */</style></head>
+
+<body>
+  <h3>A Simple Paginator</h3>
+
+<div>undefined undefined<br>
+undefined undefined<br>
+undefined undefined<br>
+undefined undefined<br>
+undefined undefined<br>
+undefined undefined<br></div>
+<button id="prev">prev 5</button>
+<button id="next">next 5</button>
+  
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "None"
+    }], "*")
+  }
+</script>
+
+
+
+
+
+</body></html>
