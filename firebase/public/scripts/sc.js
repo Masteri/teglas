@@ -1,5 +1,9 @@
 'use strict';
 
+//var database = firebase.database();
+
+
+
 // Shortcuts to DOM Elements.
 var messageForm = document.getElementById('message-form');
 var messageInput = document.getElementById('new-post-message');
