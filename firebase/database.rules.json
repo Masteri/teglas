@@ -1,10 +1,10 @@
 {
   "rules": {
     ".read": true,
-     ".write": "auth.provider === 'google' && root.child('users').child(auth.uid).child('email').val().endsWith('manivan.iv@gmail.com')",
+    ".write": "auth.provider === 'google' && root.child('users').child(auth.uid).child('email').val().endsWith('teglasitanacs01@gmail.com')",
     "users": {
       "$user_id": {
-        ".write": "auth.provider === 'google' && $user_id === auth.uid && newData.child('email').val().endsWith('manivan.iv@gmail.com')"
+        ".write": "auth.provider === 'google' && $user_id === auth.uid && newData.child('email').val().endsWith('teglasitanacs01@gmail.com')"
       }
     }
   }
