@@ -62,7 +62,7 @@ function oldgetdata() {
             newItem.appendChild(textnode);
             document.getElementById('nnn').appendChild(newItem);
             document.getElementById('nnn').appendChild(nbr);
-            document.getElementById('ullist').appendChild(li);
+            //document.getElementById('ullist').appendChild(li);
         }
         ,
         function (errorObject){
