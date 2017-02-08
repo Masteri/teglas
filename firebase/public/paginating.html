@@ -75,6 +75,7 @@ $(window).load(function(){
     console.log('newCar[0].color = ' + newCar[0].color);
 */
     var usersPostsRef = firebase.database().ref().child('posts');
+  /*
     usersPostsRef.on("child_added",
         function(snapshot ){
             //, prevChildKey){
@@ -91,7 +92,6 @@ $(window).load(function(){
 
         }
     );
-
 
     var ref = firebase.database().ref('posts');
     ref.once("value")
@@ -111,7 +111,7 @@ $(window).load(function(){
             console.log(' 2childKey2: '+JSON.stringify(childKey.author));
         });
 
-
+*/
 
 function Paginator(ref, limit) {
     this.ref = ref;
@@ -125,11 +125,12 @@ Paginator.prototype = {
     nextPage: function (callback) {
         if( this.isLastPage() ) {
             callback(this.currentSet);
-            console.log(this.currentSet);
+            console.log('this.currentSet: '+this.currentSet);
         }
 
         else {
-            var lastKey = getLastKey(this.currentSet);
+            var lastKey = getLastKey('1sdad4');//this.currentSet);
+            console.log('else getLastKey: ' +lastKey);
             // if there is no last key, we need to use undefined as priority
             var pri = lastKey ? null : undefined;
             this.ref.startAt(pri, lastKey)
@@ -152,7 +153,7 @@ Paginator.prototype = {
             var firstKey = getFirstKey(this.currentSet);
             // if there is no last key, we need to use undefined as priority
             this.ref.endAt(null, firstKey)
-                .limit(this.limit+1)
+                //.equalTo(this.limit+1)//.limit(this.limit+1)
                 .once('value', this._process.bind(this, {
                     cb: callback,
                     dir: 'prev',
@@ -204,7 +205,7 @@ Paginator.prototype = {
 
 
 var fb = usersPostsRef; //new Firebase('https://teglas-d9872.firebaseio.com/posts/');
-var paginator = new Paginator(fb, 5);
+var paginator = new Paginator(fb, 1);
 moveForward();
 
 $('#prev').click(moveBackward);
@@ -229,13 +230,19 @@ function loading() {
 function loaded(vals) {
     console.log('loaded', vals);
     var messages = map(vals, function (v, k) {
-        return v.datetime + ' ' + v.title + ' ' + v.author + '<br />';
+        return v.datetime + ' ' + v.title + ' ' + '<br />';
     });
     $('#prev').prop('disabled', paginator.isFirstPage());
     $('#next').prop('disabled', paginator.isLastPage());
     $('div').html(messages.length ? messages.join("\n") : '-no records-');
 }
-
+  /*
+function getLastKey(obj) {
+  var key = usersPostsRef.orderByKey().limitToFirst(1);
+  console.log('My----getLastKey: '+key);
+  return key;
+}
+   */
 function getLastKey(obj) {
     var key;
     if (obj) {
